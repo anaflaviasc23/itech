@@ -5,165 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Desafio dos 75 Dias</title>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 10px;
-    background: #f9f9f9;
-    max-width: 600px; /* Limita largura para telas maiores */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  h1 {
-    text-align: center;
-    font-size: 1.5em;
-  }
-
-  .habit {
-    margin: 20px 0;
-    padding: 10px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-
-  .habit h3 {
-    margin-bottom: 10px;
-    font-size: 1em;
-  }
-
-  .semana {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    flex-wrap: wrap;
-  }
-
-  .semana-label {
-    min-width: 70px;
-    font-size: 10px;
-    padding: 5px 8px;
-    margin-bottom: 5px;
-  }
-
-  .dias {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    margin-top: 5px;
-  }
-
-  .dia {
-    width: 28px;
-    height: 28px;
-    font-size: 10px;
-  }
-
-  .progress-bar-container {
-    background: #eee;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-
-  .progress-bar {
-    height: 10px;
-    width: 0;
-    border-radius: 5px;
-    transition: width 0.3s;
-  }
-
-  .legend {
-    font-size: 14px;
-  }
-
-  .legend span {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    display: block;
-    margin: 0 auto;
-  }
-
-  hr {
-    color: #0084ac;
-    margin: 15px 0;
-  }
-
-  /* Modal */
-  #motivacionalModal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    align-items: center;
-    justify-content: center;
-  }
-
-  #motivacionalModal .modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 80%;
-  }
-
-  #motivacionalModal button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background: #0896a8;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  /* Ajustes específicos para telas pequenas */
-  @media (max-width: 600px) {
-    .habit {
-      padding: 8px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
     }
-
-    .semana-label {
-      font-size: 10px;
-      padding: 4px 6px;
-      min-width: 60px;
-    }
-
-    .dia {
-      width: 24px;
-      height: 24px;
-      font-size: 9px;
-    }
-
     h1 {
-      font-size: 1.2em;
+      text-align: center;
     }
-
-    .habit h3 {
-      font-size: 0.9em;
-    }
-
-    button {
+    .habit {
+      margin: 30px 0;
+      height: auto;
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-  }
-</style>
-
+    .habit h3 {
+      margin-bottom: 10px;
+    }
+    .semana {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+    .semana-label {
+      min-width: 80px;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    .dias {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .dia {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      background: #fff;
+      border: 2px solid;
+      user-select: none;
+    }
+    .completed {
+      color: white;
+    }
+    .progress-bar-container {
+      background: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 10px;
+      width: 0;
+      border-radius: 5px;
+      transition: width 0.3s;
+    }
+    /* Modal */
+    #motivacionalModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+    }
+    #motivacionalModal .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+    }
+    #motivacionalModal button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #0896a8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    img {
+      display: flex;
+      height: auto;
+      width: 100%;
+    }
+    hr {
+      color: #0084ac;
+    }
+  </style>
 </head>
 <body>
 
@@ -185,7 +130,7 @@
 
 <!-- Botão para a página do treino -->
 <div style="text-align: center; margin: 20px 0;">
-  <button onclick="window.location.href='treinos.html'" style="padding: 10px 20px; font-size: 16px; background-color: #0084ac; color: white; border: none; border-radius: 8px; cursor: pointer;">
+  <button onclick="window.location.href='treino.html'" style="padding: 10px 20px; font-size: 16px; background-color: #0084ac; color: white; border: none; border-radius: 8px; cursor: pointer;">
     Ver Treino
   </button>
 </div>
