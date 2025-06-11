@@ -1978,4 +1978,26 @@
         <a href="index.html">← Voltar</a>
     </div>
 </body>
+
+<script>
+ // Recuperar estado salvo
+                checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+
+                checkbox.addEventListener('change', () => {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = exercicio;
+
+                li.appendChild(checkbox);
+                li.appendChild(label);
+                ul.appendChild(li);
+            });
+            treinoDiv.appendChild(ul);
+
+            container.appendChild(treinoDiv);
+        })
+</script>
 </html>
