@@ -1,0 +1,170 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Treinos - Desafio dos 75 Dias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0084ac;
+        }
+
+        .treino {
+            margin: 30px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .treino h3 {
+            margin-bottom: 10px;
+            color: #0084ac;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        ul li input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        ul li label {
+            cursor: pointer;
+        }
+
+        /* Link voltar */
+        .voltar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .voltar a {
+            text-decoration: none;
+            color: #0084ac;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Treinos do Desafio</h1>
+
+    <div id="treinosContainer"></div>
+
+    <div class="voltar">
+        <a href="index.html">← Voltar para as Regras</a>
+    </div>
+
+    <script>
+        const treinos = [
+            {
+                nome: "Treino A - (Inferior – foco em glúteos e pernas)",
+                exercicios: [
+                    "Agachamento Smith – 12-15x10-8",
+                    "Leg press 45° – 3x12",
+                    "Afundo com step FRENTE – 3x12",
+                    "Cadeira extensora (RESET PAUSE) - série 4x12 + 30”",
+                    "Agachamento Taça (Anilha no pé) - 3x15",
+                    "Panturrilha vertical 2”C - 3x15"
+                ]
+            },
+            {
+                nome: "Treino B - (Superior – foco em costas, ombros e braços)",
+                exercicios: [
+                    "Puxador supinado (AN) – 4x12",
+                    "Remada Curvada Cross - 4x12",
+                    "Pull Down (B) - 2x12",
+                    "Remada Cavalinho Livre 2”C - 3x12",
+                    "Rosca Direta 45º – 3x10",
+                    "Rosca Direta Cross – 3x7-7-7",
+                    "Abdominal Canivete - 3x20"
+                ]
+            },
+            {
+                nome: "Treino C - (Glúteos e posterior de coxa)",
+                exercicios: [
+                    "Abdução Cross (cruzada) – 4x12",
+                    "Elevação pélvica (REST PAUSE) – 3x15 + 30\"",
+                    "Búlgaro Smith - 3x12",
+                    "Stiff Barra - 15-12x10-8",
+                    "Afundo Smith – 3x12",
+                    "Cadeira Flexora 3”C - 2x12",
+                    "Mesa Flexora Unilateral – 4x10"
+                ]
+            },
+            {
+                nome: "Treino D - (Inferior – foco em quadríceps)",
+                exercicios: [
+                    "Crucifixo plano + peitoral – 3x12+10",
+                    "Elevação 2H + frontal (Anilha) – 3x12+12",
+                    "Desenvolvimento H + Unilateral - 3x10",
+                    "Tríceps Testa B. W – 4x10",
+                    "Tríceps Corda 2”C – 15-12x10-5",
+                    "Tríceps Francês H - 3x12",
+                    "Abdominal Supra H - 3x15"
+                ]
+            }
+        ];
+
+        const container = document.getElementById('treinosContainer');
+
+        treinos.forEach((treinoObj, tIndex) => {
+            const treinoDiv = document.createElement('div');
+            treinoDiv.classList.add('treino');
+
+            const titulo = document.createElement('h3');
+            titulo.textContent = treinoObj.nome;
+            treinoDiv.appendChild(titulo);
+
+            const ul = document.createElement('ul');
+            treinoObj.exercicios.forEach((exercicio, i) => {
+                const li = document.createElement('li');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `treino_${tIndex}_exercicio_${i}`;
+
+                // Recuperar estado salvo
+                checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+
+                checkbox.addEventListener('change', () => {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = exercicio;
+
+                li.appendChild(checkbox);
+                li.appendChild(label);
+                ul.appendChild(li);
+            });
+            treinoDiv.appendChild(ul);
+
+            container.appendChild(treinoDiv);
+        });
+    </script>
+
+</body>
+
+</html>
