@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Treinos - Desafio dos 75 Dias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0084ac;
+        }
+
+        .treino {
+            margin: 30px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .treino h3 {
+            margin-bottom: 10px;
+            color: #0084ac;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        ul li input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        ul li label {
+            cursor: pointer;
+        }
+
+        /* Link voltar */
+        .voltar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .voltar a {
+            text-decoration: none;
+            color: #0084ac;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Treinos Ana 2/2025 ☀️💪🏼 </h1>
+
+    <div id="treinosContainer"></div>
+
+    <div class="voltar">
+        <a href="index.html">← Voltar para as Regras</a>
+    </div>
+
+ <script>
+    const treinos = [
+        {
+            nome: "Treino A - (Quadríceps / Frente)",
+            exercicios: [
+                "Agachamento Squat + Afundo (Biset) - 3x12",
+                "Leg sentado art. (Tijolinho) - 3x15 | 12 | 10",
+                "Leg 45° | | + \\ / - 3x10",
+                "Cadeira Extensora uni + total - 3x12",
+                "Hack Guiado - 3x15",
+                "Adução - 3x15",
+                "Abdm. Supra Militar - 3xMáx.",
+                "Graviton - 3x15"
+            ]
+        },
+        {
+            nome: "Treino B - (Costas / Peito / Braços)",
+            exercicios: [
+                "Graviton - 3x15",
+                "Remada Baixa - 3x15",
+                "Supino Reto + Flexão - 3x12",
+                "Tríceps Pulley + Corda (Biset) - 3x10",
+                "Rosca martelo c/ giro + Scott (Biset) - 3x12",
+                "Desenvolvimento Guiado - - + | | - 3x10",
+                "Abdm. Infra - 3x15"
+            ]
+        },
+        {
+            nome: "Treino C - (Posterior / Glúteos)",
+            exercicios: [
+                "Flexora em pé - 3x15",
+                "Leg 45° (pés alto) - 3x10",
+                "Cadeira Flexora - 3x10 ↑Peso",
+                "Glúteo Cadeira + Máquina (Biset) - 3x12",
+                "Elevação Pélvica Máquina - 3x10",
+                "Abdução - 3x15",
+                "Panturrilha Vertical - 3x30",
+                "Abdm. Remador - 3xMáx.",
+                "Graviton - 3x15"
+            ]
+        }
+    ];
+
+    const container = document.getElementById('treinosContainer');
+
+    treinos.forEach((treinoObj, tIndex) => {
+        const treinoDiv = document.createElement('div');
+        treinoDiv.classList.add('treino');
+
+        const titulo = document.createElement('h3');
+        titulo.textContent = treinoObj.nome;
+        treinoDiv.appendChild(titulo);
+
+        const ul = document.createElement('ul');
+        treinoObj.exercicios.forEach((exercicio, i) => {
+            const li = document.createElement('li');
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `treino_${tIndex}_exercicio_${i}`;
+
+            // Recuperar estado salvo
+            checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
+
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+
+            const label = document.createElement('label');
+            label.htmlFor = checkbox.id;
+            label.textContent = exercicio;
+
+            li.appendChild(checkbox);
+            li.appendChild(label);
+            ul.appendChild(li);
+        });
+        treinoDiv.appendChild(ul);
+
+        container.appendChild(treinoDiv);
+    });
+</script>
+
+
+</body>
+
+</html>
